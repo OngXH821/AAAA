@@ -1,4 +1,13 @@
-pip install nltk
+# Function to install packages
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Install nltk if it's not already installed
+try:
+    import nltk
+except ImportError:
+    install("nltk")
+    import nltk
 import re
 import pandas as pd
 import nltk
