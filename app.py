@@ -103,7 +103,7 @@ def plot_model_comparison(accuracy_results):
     plt.show()
 
 # Main function
-if _name_ == "_main_":
+if __name__ == "__main__":
     # Path to your CSV file containing the dataset
     data_path = 'Dataset-SA.csv'  # Ensure this file is in the same directory
     
