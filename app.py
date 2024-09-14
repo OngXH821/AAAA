@@ -1,20 +1,7 @@
-import os
-import subprocess
-import sys
-
-# Function to install packages
-def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
-# Install nltk if it's not already installed
-try:
-    import nltk
-except ImportError:
-    install("nltk")
-    import nltk
-
+import streamlit as st
 import re
 import pandas as pd
+import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -37,8 +24,6 @@ def preprocess_text(text):
     lemmatizer = WordNetLemmatizer()
     words = [lemmatizer.lemmatize(word) for word in words if word not in stop_words]
     return ' '.join(words)
-
-import streamlit as st
 
 st.title('Sentiment Analysis App')
 
