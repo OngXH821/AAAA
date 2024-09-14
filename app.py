@@ -1,17 +1,25 @@
-import os
 import subprocess
 import sys
 
-# Function to install packages
 def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+    except subprocess.CalledProcessError as e:
+        print(f"Error occurred while installing {package}: {e}")
+        sys.exit(1)
 
-# Install nltk if it's not already installed
+# Try to import nltk and install if it's not available
 try:
     import nltk
 except ImportError:
+    print("nltk not found, installing...")
     install("nltk")
     import nltk
+
+# Ensure NLTK resources are downloaded
+nltk.download('stopwords')
+nltk.download('wordnet')
+
 
 import re
 import pandas as pd
